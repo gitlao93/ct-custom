@@ -9,50 +9,113 @@
  * @package CT_Custom
  */
 
+$theme_settings = get_option( 'ct_theme_settings', array() );
+
+$logo_id = absint( $theme_settings['logo_id'] ?? 0 );
+$phone   = $theme_settings['phone'] ?? '';
+
+$phone_href = preg_replace( '/[^0-9+]/', '', $phone );
+
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
+<meta charset="<?php bloginfo( 'charset' ); ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="https://gmpg.org/xfn/11">
 
-	<?php wp_head(); ?>
+<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'ct-custom' ); ?></a>
+<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'ct-custom' ); ?></a>
 
-	<header id="masthead" class="site-header">
+<header id="masthead" class="site-header">
+	<!-- Top bar -->
+	<div class="top-bar">
+		<div class="container top-bar-inner">
+
+			<?php if ( ! empty( $phone_href ) ) : ?>
+			<div class="top-bar-contact">
+				<span>CALL US NOW!</span>
+
+				<a href="<?php echo esc_attr( 'tel:' . $phone_href ); ?>">
+					<?php echo esc_html( $phone ); ?>
+				</a>
+			</div>
+			<?php endif; ?>
+
+			<nav class="top-bar-account" aria-label="Account navigation">
+				<a href="#">LOGIN</a>
+				<a href="#">SIGNUP</a>
+			</nav>
+
+		</div>
+	</div>
+
+	<!-- Main header  -->
+	<div class="main-header">
+		<div class="container main-header-inner">
+
+
 		<div class="site-branding">
 			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$ct_custom_description = get_bloginfo( 'description', 'display' );
-			if ( $ct_custom_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $ct_custom_description; /* WPCS: xss ok. */ ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'ct-custom' ); ?></button>
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
-			) );
+			$logo_html = $logo_id
+				? wp_get_attachment_image(
+					$logo_id,
+					'full',
+					false,
+					array(
+						'class' => 'custom-logo',
+						'alt'   => get_bloginfo( 'name' ),
+					)
+				)
+				: '';
 			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
 
-	<div id="content" class="site-content">
+			<?php if ( $logo_html ) : ?>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"
+				class="custom-logo-link"
+				rel="home">
+					<?php echo $logo_html; ?>
+				</a>
+			<?php else : ?>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"
+				class="site-title"
+				rel="home">
+					YOUR<span class="highlight">LOGO</span>
+				</a>
+			<?php endif; ?>
+		</div>
+
+
+			<nav id="site-navigation"
+				class="main-navigation"
+				aria-label="Primary navigation">
+
+				<button class="menu-toggle"
+						type="button"
+						aria-controls="primary-menu"
+						aria-expanded="false">
+					<?php esc_html_e( 'Menu', 'ct-custom' ); ?>
+				</button>
+
+				<?php
+				wp_nav_menu( array(
+					'theme_location' => 'menu-1',
+					'menu_id'        => 'primary-menu',
+					'container'      => false,
+					'fallback_cb'    => false,
+				) );
+				?>
+
+			</nav>
+
+		</div>
+	</div>
+
+</header><!-- #masthead -->
+
+<div id="content" class="site-content">

@@ -1,0 +1,345 @@
+/* ========================================
+   Homepage Layout
+======================================== */
+
+.homepage {
+  padding: 40px 0 70px;
+  background-color: #ffffff;
+  color: #555555;
+  font-family: "Source Sans 3", Arial, sans-serif;
+}
+
+/* ========================================
+   Dynamic Breadcrumbs
+======================================== */
+
+.breadcrumbs {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 12px 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.breadcrumbs ol {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumbs li {
+  color: #313131;
+  font-size: 13px;
+}
+
+.breadcrumbs li:not(:last-child)::after {
+  content: "/";
+  margin-left: 8px;
+  color: #999999;
+}
+
+.breadcrumbs a {
+  color: #999999;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover,
+.breadcrumbs a:focus-visible {
+  color: #ff6200;
+}
+
+.breadcrumbs [aria-current="location"] {
+  color: #313131;
+  font-weight: 600;
+}
+
+/* Anchor scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+#homepage-editor-content h2,
+#homepage-editor-content h3 {
+  scroll-margin-top: 130px;
+}
+
+/* ========================================
+   Page Introduction
+======================================== */
+
+.page-intro {
+  margin-bottom: 50px;
+}
+
+.page-intro-content {
+  color: #999999;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* WordPress editor H1 */
+.homepage .page-intro h1 {
+  margin: 0 0 8px;
+  color: #ff6200;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* WordPress editor H2 */
+.homepage .page-intro h2 {
+  margin: 0 0 8px;
+  color: #ff6200;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* WordPress editor H3 - Contact */
+.homepage .page-intro h3 {
+  margin: 0 0 8px;
+  color: #ff6200;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Introductory paragraphs */
+.homepage .page-intro p {
+  color: #999999;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* ========================================
+   Contact Layout
+======================================== */
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 75px;
+}
+
+.homepage .contact-layout h2 {
+  margin: 0 0 8px;
+  color: #ff6200;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.section-divider {
+  height: 6px;
+  margin-bottom: 18px;
+  background-color: #555555;
+}
+
+/* ========================================
+   Contact Form 7
+======================================== */
+
+.contact-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-form-fields .form-row {
+  width: 100%;
+}
+
+.contact-form-fields .form-row p,
+.contact-form-fields .form-row-two p {
+  margin: 0;
+}
+
+.contact-form-fields .form-row-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.contact-form-fields .wpcf7-form-control-wrap {
+  display: block;
+  width: 100%;
+}
+
+/* Form inputs */
+.contact-form-fields input:not([type="submit"]),
+.contact-form-fields textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #eeeeee;
+  border-radius: 0;
+  background-color: #f6f6f6;
+  color: #313131;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+/* Textarea */
+.contact-form-fields textarea {
+  height: 150px;
+  min-height: 50px;
+  resize: vertical;
+}
+
+/* Submit button */
+.contact-form-fields input[type="submit"] {
+  width: auto;
+  padding: 12px 25px;
+  border: 0;
+  border-radius: 0;
+  background-color: #ff6200;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.contact-form-fields input[type="submit"]:hover {
+  background-color: #e65c00;
+}
+
+.contact-form-fields input:focus-visible,
+.contact-form-fields textarea:focus-visible {
+  outline: 2px solid #ff6200;
+  outline-offset: 2px;
+}
+
+/* ========================================
+   Business Information
+======================================== */
+
+.homepage .business-details {
+  color: #555555;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.business-name {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.business-details address {
+  margin-bottom: 18px;
+  font-style: normal;
+}
+
+.business-contact {
+  margin-bottom: 50px;
+}
+
+.business-contact p {
+  margin: 0;
+}
+
+.business-contact a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.business-contact a:hover {
+  color: #ff6200;
+}
+
+/* ========================================
+   Social Media Icons
+======================================== */
+
+.social-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 35px;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: #cccccc;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.social-links img {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+/* Match PSD dark gray hover */
+.social-links a:hover,
+.social-links a:focus-visible {
+  background-color: #555555;
+}
+
+.social-links a:focus-visible {
+  outline: 2px solid #313131;
+  outline-offset: 2px;
+}
+
+/* ========================================
+   Responsive Layout
+======================================== */
+
+@media (max-width: 767px) {
+  .homepage {
+    padding: 30px 0 50px;
+  }
+
+  .page-intro {
+    margin-bottom: 35px;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .business-contact {
+    margin-bottom: 25px;
+  }
+
+  .social-links {
+    margin-top: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-form-fields .form-row-two {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   Accessibility
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .social-links a {
+    transition: none;
+  }
+}
